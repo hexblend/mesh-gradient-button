@@ -57,14 +57,21 @@ const Button = ({ color = 'silver', children, ...props }: ButtonProps) => {
 
   const gradient = useMemo(
     () => ({
-      silver: `radial-gradient(180px at ${mousePosition.x}px ${mousePosition.y}px, rgba(192, 192, 192, 0.6), rgba(169, 169, 169, 0.2) 70%, transparent 80%)`,
-      gold: `radial-gradient(180px at ${mousePosition.x}px ${mousePosition.y}px, rgba(255, 215, 0, 0.6), rgba(184, 134, 11, 0.2) 70%, transparent 80%)`,
-      green: `radial-gradient(180px at ${mousePosition.x}px ${mousePosition.y}px, rgba(50, 205, 50, 0.6), rgba(34, 139, 34, 0.2) 70%, transparent 80%)`,
-      magenta: `radial-gradient(180px at ${mousePosition.x}px ${mousePosition.y}px, rgba(255, 0, 255, 0.6), rgba(199, 21, 133, 0.2) 70%, transparent 80%)`,
-      red: `radial-gradient(180px at ${mousePosition.x}px ${mousePosition.y}px, rgba(255, 0, 0, 0.6), rgba(178, 34, 34, 0.2) 70%, transparent 80%)`,
+      silver: `radial-gradient(200px at ${mousePosition.x}px ${mousePosition.y}px, rgba(192, 192, 192, 0.6), rgba(169, 169, 169, 0.2) 70%, transparent 80%)`,
+      gold: `radial-gradient(200px at ${mousePosition.x}px ${mousePosition.y}px, rgba(255, 215, 0, 0.6), rgba(184, 134, 11, 0.2) 70%, transparent 80%)`,
+      green: `radial-gradient(200px at ${mousePosition.x}px ${mousePosition.y}px, rgba(50, 205, 50, 0.6), rgba(34, 139, 34, 0.2) 70%, transparent 80%)`,
+      magenta: `radial-gradient(200px at ${mousePosition.x}px ${mousePosition.y}px, rgba(255, 0, 255, 0.6), rgba(199, 21, 133, 0.2) 70%, transparent 80%)`,
+      red: `radial-gradient(200px at ${mousePosition.x}px ${mousePosition.y}px, rgba(255, 0, 0, 0.6), rgba(178, 34, 34, 0.2) 70%, transparent 80%)`,
     }),
     [mousePosition],
   );
+  const border = {
+    silver: 'hover:border-silver',
+    gold: 'hover:border-gold',
+    green: 'hover:border-green',
+    magenta: 'hover:border-magenta',
+    red: 'hover:border-red',
+  };
 
   return (
     <button
@@ -72,10 +79,10 @@ const Button = ({ color = 'silver', children, ...props }: ButtonProps) => {
       onMouseDown={() => setIsPressed(true)}
       onMouseUp={() => setIsPressed(false)}
       className={cn(
-        'relative block overflow-hidden rounded-full border border-gray-700 px-6 py-3 text-lg font-extralight text-gray-300 transition-all duration-[225ms] hover:border-gold hover:text-white',
+        'relative block overflow-hidden rounded-full border border-gray-700 px-12 py-5 text-lg font-extralight text-gray-300 transition-all duration-[225ms] hover:text-white',
+        border[color],
         isHovering ? 'scale-105' : 'scale-100',
         isPressed && 'scale-100',
-        `hover:border-${color}`,
       )}
       {...props}
     >
