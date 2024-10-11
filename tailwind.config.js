@@ -1,7 +1,11 @@
 export default {
   content: ['index.html', './src/**/*.{js,jsx,ts,tsx,vue,html}'],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        gold: '#FFD700',
+      },
+    },
   },
   plugins: [],
 };
