@@ -1,6 +1,7 @@
 import { cn } from '@/lib/utils';
 import {
   ButtonHTMLAttributes,
+  ReactNode,
   useEffect,
   useMemo,
   useRef,
@@ -11,9 +12,15 @@ type ButtonColor = 'silver' | 'gold' | 'green' | 'magenta' | 'red';
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   color: ButtonColor;
+  icon?: ReactNode;
 }
 
-const Button = ({ color = 'silver', children, ...props }: ButtonProps) => {
+const Button = ({
+  color = 'silver',
+  icon,
+  children,
+  ...props
+}: ButtonProps) => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [isHovering, setIsHovering] = useState(false);
   const [isPressed, setIsPressed] = useState(false);
@@ -86,7 +93,10 @@ const Button = ({ color = 'silver', children, ...props }: ButtonProps) => {
       )}
       {...props}
     >
-      <span className="z-10">{children}</span>
+      <div className="flex items-center gap-2">
+        {icon && <span className="z-10">{icon}</span>}
+        <span className="z-10">{children}</span>
+      </div>
 
       {/* Grandient */}
       <div
